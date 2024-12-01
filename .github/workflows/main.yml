@@ -1,0 +1,28 @@
+name: Unit Test Workflow
+
+on:
+  push:         # El trigger que dispara, en este caso, un push
+    branches:
+      - main    # Las ramas donde se ejecutará este workflow
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_HOST: 127.0.0.1
+      POSTGRES_PORT: 5432
+      TEST_ENV: true
+    steps:
+      - name: Configurar repositorio
+        uses: actions/checkout@v3
+      - name: Instalar dependencias
+        run: |
+          cd backend  # Cambiar al directorio de la aplicación
+          pip install -r requirements.txt
+      - name: Ejecutar pruebas
+        run: |
+          cd backend  # Cambiar al directorio de la aplicación
+          pytest      # Ejecutar las pruebas
