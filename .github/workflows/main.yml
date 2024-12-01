@@ -27,7 +27,7 @@ jobs:
       - name: Ejecutar pruebas y generar cobertura
         run: |
           cd backend  # Cambiar al directorio de la aplicación
-          pytest --cov=backend --cov-report=xml  # Generar reporte de cobertura en formato XML
+          TEST_ENV=true pytest --cov=app --cov-report=xml  # Generar reporte de cobertura en formato XML
           
       - name: Subir cobertura a Codecov
         uses: codecov/codecov-action@v3
