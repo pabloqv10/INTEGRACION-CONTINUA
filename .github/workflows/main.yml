@@ -26,3 +26,7 @@ jobs:
         run: |
           cd backend  # Cambiar al directorio de la aplicación
           pytest      # Ejecutar las pruebas
+      - name: Subir cobertura a Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./backend/coverage.xml  # Ruta al archivo XML de cobertura generado
